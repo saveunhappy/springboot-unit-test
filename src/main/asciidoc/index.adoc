@@ -1,0 +1,21 @@
+= 这是标题一
+:toc: left
+
+文章段落
+
+== 这是标题二
+
+.curl-request
+include::{snippets}/dog/curl-request.adoc[]
+
+.http-request
+include::{snippets}/dog/http-request.adoc[]
+
+.request-fields
+include::{snippets}/dog/request-fields.adoc[]
+
+.response-body
+include::{snippets}/dog/response-body.adoc[]
+
+.response-fields
+include::{snippets}/dog/response-fields.adoc[]
