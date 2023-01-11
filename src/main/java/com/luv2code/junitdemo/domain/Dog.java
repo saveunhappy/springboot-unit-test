@@ -1,4 +1,4 @@
-package com.luv2code.springbootunittest.domain;
+package com.luv2code.junitdemo.domain;
 
 public class Dog {
     private Integer id;

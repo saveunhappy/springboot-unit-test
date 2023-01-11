@@ -1,4 +1,4 @@
-package com.luv2code.springbootunittest;
+package com.luv2code.junitdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
