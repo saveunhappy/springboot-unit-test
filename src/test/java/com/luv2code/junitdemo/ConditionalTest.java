@@ -39,8 +39,8 @@ public class ConditionalTest {
     }
 
     @Test
-    @EnabledOnJre(JRE.JAVA_14)
-    void testForJava17Only() {
+    @EnabledOnJre(JRE.JAVA_8)
+    void testForJava8Only() {
         // Execute method and perform asserts
     }
 
@@ -74,3 +74,10 @@ public class ConditionalTest {
         // Execute method and perform asserts
     }
 }
+
+
+
+
+
+
+
