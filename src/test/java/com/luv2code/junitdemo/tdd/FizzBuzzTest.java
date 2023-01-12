@@ -1,6 +1,7 @@
 package com.luv2code.junitdemo.tdd;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -173,4 +174,20 @@ class FizzBuzzTest {
     static Stream<Arguments> userGenerator(){
         return Stream.of(Arguments.of(1L, "Sally"), Arguments.of(2L, "Terry"), Arguments.of(3L, "Fred"));
     }
+    @ParameterizedTest
+    @ArgumentsSource(CustomArgumentsGenerator.class)
+    void testGeneratedArguments(double number) throws Exception {
+        assertFalse(number == 0.D);
+        assertTrue(number > 0);
+        assertTrue(number < 1);
+    }
+
+    static class CustomArgumentsGenerator implements ArgumentsProvider {
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+            return Stream.of(Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+                    .map(Arguments::of);
+        }
+    }
+
 }
