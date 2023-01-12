@@ -1,9 +1,6 @@
 package com.luv2code.junitdemo;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.util.StopWatch;
 
 import java.time.Duration;
@@ -20,10 +17,21 @@ public class DemoUtilsTest {
         demoUtils = new DemoUtils();
         System.out.println("@BeforeEach executes before the execution of each test method");
     }
-//    @AfterEach
-//    void testAfterDownEach(){
-//        System.out.println("Running afterEach");
-//    }
+    @AfterEach
+    void testAfterDownEach(){
+        System.out.println("Running afterEach");
+    }
+
+
+    @BeforeAll
+    static void setupBeforeEachClass() {
+        System.out.println("@BeforeAll executes only once before all test methods execution in the class");
+    }
+
+    @AfterAll
+    static void tearDownAfterAll() {
+        System.out.println("@AfterAll executes only once after all test methods execution in the class");
+    }
 
     @Test
     @DisplayName("测试乘法")
