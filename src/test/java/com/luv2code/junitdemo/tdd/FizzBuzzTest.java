@@ -6,6 +6,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -189,5 +191,18 @@ class FizzBuzzTest {
                     .map(Arguments::of);
         }
     }
+    Map<Long, String> idToUsername = new HashMap<>();
 
+    {
+        idToUsername.put(1L, "Selma");
+        idToUsername.put(2L, "Lisa");
+        idToUsername.put(3L, "Tim");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,Selma", "2,Lisa", "3,Tim"})
+    void testUsersFromCsv(long id, String name) {
+        assertTrue(idToUsername.containsKey(id));
+        assertTrue(idToUsername.get(id).equals(name));
+    }
 }
