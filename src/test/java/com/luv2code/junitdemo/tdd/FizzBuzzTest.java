@@ -2,12 +2,12 @@ package com.luv2code.junitdemo.tdd;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -140,4 +140,37 @@ class FizzBuzzTest {
                 TimeUnit.MICROSECONDS).contains(unit));
     }
 
+    @ParameterizedTest
+    @MethodSource("stringGenerator")
+    void shouldNotBeNullString(String arg){
+        assertNotNull(arg);
+    }
+
+    @ParameterizedTest
+    @MethodSource("intGenerator")
+    void shouldBeNumberWithinRange(int arg){
+        assertAll(
+                () -> assertTrue(arg > 0),
+                () -> assertTrue(arg <= 10)
+        );
+    }
+
+    @ParameterizedTest(name = "[{index}] user with id: {0} and name: {1}")
+    @MethodSource("userGenerator")
+    void shouldUserWithIdAndName(long id, String name){
+        assertNotNull(id);
+        assertNotNull(name);
+    }
+
+    static Stream<String> stringGenerator(){
+        return Stream.of("hello", "world", "let's", "test");
+    }
+
+    static IntStream intGenerator() {
+        return IntStream.range(1,10);
+    }
+
+    static Stream<Arguments> userGenerator(){
+        return Stream.of(Arguments.of(1L, "Sally"), Arguments.of(2L, "Terry"), Arguments.of(3L, "Fred"));
+    }
 }
